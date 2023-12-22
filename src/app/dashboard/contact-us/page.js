@@ -1,7 +1,6 @@
 "use client";
 import { API } from "@/API";
 import Tables from "@/components/Tables";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const Page = () => {
