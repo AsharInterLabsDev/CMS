@@ -12,7 +12,7 @@ const Page = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await API.getsingleeeventsbyid(Number(params));
+        const res = await API.GetSingleListingsBooks(Number(params));
         console.log(res.data);
         setUpdateData(res.data.data);
       } catch (error) {
@@ -56,7 +56,7 @@ const Page = () => {
           title, description,
           image
         }
-        const resps = await API.updateevents(params, data);
+        const resps = await API.UpdateListingsBooks(params, data);
         console.log(resps.data);
       }
     } catch (error) {
@@ -67,7 +67,7 @@ const Page = () => {
     <>
       <div className="py-10 container mx-auto">
         <a
-          href="/dashboard/events"
+          href="/dashboard/listing/book-listing"
           class="my-10 min-w-[100px] text-lg text-center inline-block rounded bg-indigo-600 px-3 py-2 font-medium text-white hover:bg-indigo-700"
         >
           Back

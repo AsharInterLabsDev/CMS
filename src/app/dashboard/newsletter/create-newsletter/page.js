@@ -55,7 +55,7 @@ const Page = () => {
     <div className="py-10 container mx-auto">
         <a
           href="/dashboard/newsletter"
-          class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+          class="my-10 min-w-[100px] text-lg text-center inline-block rounded bg-indigo-600 px-3 py-2 font-medium text-white hover:bg-indigo-700"
         >
           Back
         </a>

@@ -4,7 +4,7 @@ const CreateGallery = () => {
   return (
     <>
     <div className='py-10 '>
-<div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+<div className="rounded-lg bg-white shadow-lg lg:col-span-3 p-4">
         <form onSubmit={handleImage} className="space-y-4">
           
          

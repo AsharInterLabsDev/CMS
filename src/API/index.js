@@ -85,4 +85,50 @@ API.deleteNewsletter = (id) => {
   return API.get(`/v1/newsletters/${id}`);
 }
 
+
+//BOOK LISTING
+API.GetListingsBooks = () => {
+  return API.get("/v1/listings/books");
+}
+API.GetSingleListingsBooks = () => {
+  return API.get("/v1/listings/books/:id");
+}
+API.UpdateListingsBooks = (id,data) => {
+  return API.patch(`/v1/listings/books/${id}`,data);
+}
+API.DeleteListingsBooks = (id) => {
+  return API.delete(`/v1/listings/books/${id}`);
+}
+API.CreateListingsBooks = (data) => {
+  return API.post(`/v1/listings/books`,data);
+}
+
+//CATALOG LISTING
+API.GetListingsCatalogs = () => {
+  return API.get("/v1/listings/catalogs");
+}
+API.UpdateListingsCatalogs = (id,data) => {
+  return API.patch(`/v1/listings/catalogs/${id}`,data);
+}
+API.DeleteListingsCatalogs = (id) => {
+  return API.delete(`/v1/listings/catalogs/${id}`);
+}
+API.CreateListingsCatalogs = (data) => {
+  return API.post(`/v1/listings/catalogs`,data);
+}
+
+//CATALOG LISTING
+API.GetListingsArticles = () => {
+  return API.get("/v1/listings/articles");
+}
+API.UpdateListingsArticles = (id,data) => {
+  return API.patch(`/v1/listings/articles/${id}`,data);
+}
+API.DeleteListingsArticles = (id) => {
+  return API.delete(`/v1/listings/articles/${id}`);
+}
+API.CreateListingsArticles = (data) => {
+  return API.post(`/v1/listings/articles`,data);
+}
+
 export { API };

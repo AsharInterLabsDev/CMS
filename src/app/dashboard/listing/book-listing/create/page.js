@@ -5,7 +5,6 @@ import React, { useState } from "react";
 const CreateGallery = () => {
   const [images, setImages] = useState(null);
   const [formState, setFormState] = useState({
-    title: "",
     description: "",
   });
   const getImages = (e) => {
@@ -40,23 +39,21 @@ const CreateGallery = () => {
 
       console.log("image: ", image)
 
-      const { title, description } = formState;
+      const { description } = formState;
       
       const data = {
-        title,
         description,
         image,
       };
 
       console.log("data: ", data)
       
-      const resp = await API.CreateSpotlights(data);
+      const resp = await API.CreateListingsBooks(data);
       console.log(resp.data);
     } catch (error) {
       console.error("Error uploading image:", error);
     }
   };
-  console.log("title", formState);
   return (
     <>
       <div className="px-10 ">
@@ -66,7 +63,7 @@ const CreateGallery = () => {
         >
           Back
         </a>
-        <div className="rounded-lg bg-white shadow-lg lg:col-span-3 p-4">
+        <div className="rounded-lg bg-white shadow-lg lg:col-span-3 p-4 p-4">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="sr-only" htmlFor="message">
@@ -79,17 +76,6 @@ const CreateGallery = () => {
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Message"
                 id="message"
-              />
-            </div>
-            <div className="text-left">
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                className="w-full rounded-lg p-3 text-sm"
-                onChange={(e) => {
-                  setFormState({ ...formState, title: e.target.value });
-                }}
               />
             </div>
             <div className="mt-4">
@@ -107,7 +93,7 @@ const CreateGallery = () => {
             <div className="mt-4">
               <button
                 type="submit"
-                className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+                className="m-2 inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
               >
                 Send Enquiry
               </button>

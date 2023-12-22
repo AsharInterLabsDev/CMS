@@ -48,14 +48,14 @@ const [image, setImage] = useState(null);
 
   return (
     <>
-      <div className="py-10 ">
+      <div className="px-10 ">
       <a
            href="/dashboard/galleries"
-           class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+           class="my-10 min-w-[100px] text-lg text-center inline-block rounded bg-indigo-600 px-3 py-2 font-medium text-white hover:bg-indigo-700"
            >
             Back
           </a>
-        <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+        <div className="rounded-lg bg-white shadow-lg lg:col-span-3 p-4">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="sr-only" htmlFor="message">

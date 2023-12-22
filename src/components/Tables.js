@@ -8,6 +8,7 @@ const Tables = ({ imageMap, setId, id }) => {
   const router = usePathname();
 
   console.log(router);
+  console.log("All Data",imageMap)
   return (
     <>
       <div className="rounded-lg border border-gray-200">
@@ -68,7 +69,7 @@ const Tables = ({ imageMap, setId, id }) => {
                       {router === "/dashboard/galleries" ? (
                         //  <a
                         //  href="/dashboard/galleries/creategallery"
-                        //  class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                        //  class="my-10 min-w-[100px] text-lg text-center inline-block rounded bg-indigo-600 px-3 py-2 font-medium text-white hover:bg-indigo-700"
                         //  >
                         //   Update
                         // </a>
@@ -76,14 +77,14 @@ const Tables = ({ imageMap, setId, id }) => {
                       ) : router === "/dashboard/events" ? (
                         <a
                           href={`/dashboard/events/update-events?update=${gallery.id}`}
-                          class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                          class="my-10 min-w-[100px] text-lg text-center inline-block rounded bg-indigo-600 px-3 py-2 font-medium text-white hover:bg-indigo-700"
                         >
                           Update
                         </a>
                       ) : (
                         <a
                           href={`/dashboard/galleries/updategallery?update=${gallery.id}`}
-                          class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                          class="my-10 min-w-[100px] text-lg text-center inline-block rounded bg-indigo-600 px-3 py-2 font-medium text-white hover:bg-indigo-700"
                         >
                           Update
                         </a>

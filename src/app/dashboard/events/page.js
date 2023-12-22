@@ -41,12 +41,12 @@ const Page = () => {
           <div className=" px-10">
             <a
               href="/dashboard/events/create-events"
-              class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+              class="my-10 min-w-[100px] text-lg text-center inline-block rounded bg-indigo-600 px-3 py-2 font-medium text-white hover:bg-indigo-700"
             >
               Create
             </a>
           </div>
-          <div className="py-10 ">
+          <div className="px-10 ">
             <Tables imageMap={imageMap} setId={setId} id={id} />
           </div>
          

@@ -5,7 +5,6 @@ import React, { useState } from "react";
 const CreateGallery = () => {
   const [images, setImages] = useState(null);
   const [formState, setFormState] = useState({
-    title: "",
     description: "",
   });
   const getImages = (e) => {
@@ -40,10 +39,9 @@ const CreateGallery = () => {
 
       console.log("image: ", image)
 
-      const { title, description } = formState;
+      const { description } = formState;
       
       const data = {
-        title,
         description,
         image,
       };
@@ -56,7 +54,6 @@ const CreateGallery = () => {
       console.error("Error uploading image:", error);
     }
   };
-  console.log("title", formState);
   return (
     <>
       <div className="px-10 ">
@@ -79,17 +76,6 @@ const CreateGallery = () => {
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Message"
                 id="message"
-              />
-            </div>
-            <div className="text-left">
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                className="w-full rounded-lg p-3 text-sm"
-                onChange={(e) => {
-                  setFormState({ ...formState, title: e.target.value });
-                }}
               />
             </div>
             <div className="mt-4">
