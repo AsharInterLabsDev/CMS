@@ -1,25 +1,10 @@
 "use client";
 import { API } from "@/API";
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation';
+
 const CreateGallery = () => {
-    
-//   const [image, setImage] = useState({});
-//   const getImages = (e) => {
-//     const { name } = e.target;
-//     setImage({ ...image, [name]: e.target.files[0] });
-//   };
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     let formData = new FormData();
-//     formData?.append("image", image);
-//     console.log(formData);
-//     console.log(image);
-//     const resp = await API.createGalleries(image);
-//     console.log(resp.data);
-//   };
-
-
+  
 const searchparams =useSearchParams();
 const params = searchparams.get("update"); 
 // console.log(params)

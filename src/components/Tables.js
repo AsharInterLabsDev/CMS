@@ -1,13 +1,13 @@
-'use client'
+"use client";
 import { API } from "@/API";
 import Image from "next/image";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const Tables = ({ imageMap,setId, id }) => {
-  const  router  =usePathname()
-  
-console.log(router)
+const Tables = ({ imageMap, setId, id }) => {
+  const router = usePathname();
+  console.log(imageMap);
+  console.log(router);
   return (
     <>
       <div className="rounded-lg border border-gray-200">
@@ -15,85 +15,93 @@ console.log(router)
           <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
             <thead className="ltr:text-left rtl:text-right">
               <tr>
-                {imageMap.map(g=>g.image)[0] && ( 
-
+                {imageMap.map((g) => g.image)[0] && (
                   <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                  Image
-                </th>
-                  )}
+                    Image
+                  </th>
+                )}
                 <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                   Id
                 </th>
+                {imageMap.map((g) => g.name)[0] ? (
+                  <>
+                    <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                      Name
+                    </th>
+                  </>
+                ) : (
+                  <>
+                    <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                      Title
+                    </th>
+                  </>
+                )}
+
                 <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                  Name
+                  Description
                 </th>
-                
-                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                </th>
-                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                
-                </th>
+                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></th>
               </tr>
             </thead>
 
             <tbody className="min-w-full divide-y-2 divide-gray-200">
               {imageMap.map((gallery, i) => {
-                
                 return (
                   <tr key={i}>
-                    {gallery.image && ( 
-
+                    {gallery.image && (
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                      <Image
-                        src={gallery.image}
-                        alt="ad"
-                        width={300}
-                        height={300}
-                        className="h-[80px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[80px]"
+                        <Image
+                          src={gallery.image}
+                          alt="ad"
+                          width={300}
+                          height={300}
+                          className="h-[80px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[80px]"
                         />
-                    </td>
-                        )}
+                      </td>
+                    )}
                     <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                       {gallery.id}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                      {gallery.name}
+                      {gallery.name || gallery.title}
                     </td>
-                    
-                    <td class="whitespace-nowrap px-4 py-2">
-         {router === '/dashboard/galleries' ? ( 
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                      {gallery.description || gallery.title}
+                    </td>
 
-          //  <a
-          //  href="/dashboard/galleries/creategallery"
-          //  class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
-          //  >
-          //   Update
-          // </a>
-          ""
-            )  :  router === '/dashboard/events' ? ( 
-              <a
-           href="/dashboard/events"
-           class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
-           >
-            Update
-          </a>
-            ) :( 
-              <a
-           href={`/dashboard/galleries/updategallery?update=${gallery.id}`}
-           class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
-           >
-            Update
-          </a>
-            )}
-         
-          <a
-            href="#" onClick={()=>setId(gallery.id)}
-            class="inline-block rounded bg-indigo-600 px-3 ml-2 py-2 text-xs font-medium text-white hover:bg-indigo-700"
-          >
-            Delete
-          </a>
-        </td>
-                    
+                    <td class="whitespace-nowrap px-4 py-2">
+                      {router === "/dashboard/galleries" ? (
+                        //  <a
+                        //  href="/dashboard/galleries/creategallery"
+                        //  class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                        //  >
+                        //   Update
+                        // </a>
+                        ""
+                      ) : router === "/dashboard/events" ? (
+                        <a
+                          href={`/dashboard/events/update-events?update=${gallery.id}`}
+                          class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                        >
+                          Update
+                        </a>
+                      ) : (
+                        <a
+                          href={`/dashboard/galleries/updategallery?update=${gallery.id}`}
+                          class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                        >
+                          Update
+                        </a>
+                      )}
+
+                      <a
+                        href="#"
+                        onClick={() => setId(gallery.id)}
+                        class="inline-block rounded bg-indigo-600 px-3 ml-2 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                      >
+                        Delete
+                      </a>
+                    </td>
                   </tr>
                 );
               })}

@@ -45,5 +45,11 @@ API.createevents = (data) => {
 API.deleteevents = (id) => {
   return API.delete(`/v1/events/${id}`);
 };
+API.getsingleeeventsbyid = (id) => {
+  return API.get(`/v1/events/${id}`);
+};
+API.updateevents = (id, data) => {
+  return API.patch(`/v1/events/${id}`, data);
+};
 
 export { API };

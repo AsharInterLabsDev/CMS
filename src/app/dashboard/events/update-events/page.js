@@ -1,15 +1,31 @@
 "use client";
 import { API } from "@/API";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { toast } from "react-toastify";
+import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 const Page = () => {
-  const router = useRouter();
+  const searchparams = useSearchParams();
+  const params = searchparams.get("update");
+  console.log(params);
+  const [updateData, setUpdateData] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await API.getsingleeeventsbyid(Number(params));
+        console.log(res.data);
+        setUpdateData(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [params]);
+
   const [image, setImage] = useState(null);
-  const [title, setTitle] = useState("");
+  // const [title, setTitle] = useState("");
   const [stringImage, setStrigImage] = useState("");
-  const [description, setDescription] = useState("");
+  // const [description, setDescription] = useState("");
 
   const getImages = (e) => {
     const file = e.target.files[0];
@@ -18,7 +34,7 @@ const Page = () => {
   // console.log(stringImage);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!stringImage || !title || !description) {
+    if (!stringImage ) {
       console.error("No image selected");
       return;
     }
@@ -28,36 +44,30 @@ const Page = () => {
           console.error("No image selected");
           return;
         }
-
         const formData = new FormData();
         formData.append("image", stringImage);
-
         const resp = await API.createGalleries(formData);
-        // console.log(resp.data.data.imageUrl);
+        console.log(resp.data.data.imageUrl);
+        let image = resp.data.data.imageUrl
         setImage(resp.data.data.imageUrl);
-        let image = resp.data.data.imageUrl;
-        // console.log(image);
-        const resps = await API.createevents({ image, title, description });
-        console.log(resps.data.status.success);
-        if (resps.data.status.success === true) {
-          toast.success("Create Successfully!");
-          setTimeout(()=>{
-            router.push("/dashboard/events");
-          },3000)
-        } else {
-          toast.error("Something went wrong!");
+        console.log(image);
+        const {id, title, description} =updateData;
+        const data={
+          title, description,
+          image
         }
+        const resps = await API.updateevents(params, data);
+        console.log(resps.data);
       }
     } catch (error) {
       console.error("Error uploading image:", error);
     }
   };
-
   return (
     <>
       <div className="py-10 container mx-auto">
         <a
-          href="/dashboard/events"
+          href="/dashboard/events/update-events"
           class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
         >
           Back
@@ -65,17 +75,22 @@ const Page = () => {
         <div className="rounded-lg bg-white p-8 container mx-auto px-5 shadow-lg lg:col-span-3 lg:p-12">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="sr-only" htmlFor="message">
-                Image
-              </label>
-              <input
-                type="file"
-                name="image"
-                onChange={getImages}
-                className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Message"
-                id="message"
-              />
+              <div>
+                <label className="sr-only" htmlFor="message">
+                  Image
+                </label>
+                <input
+                  type="file"
+                  name="image"
+                  onChange={getImages}
+                  className="w-full rounded-lg border-gray-200 p-3 text-sm"
+                  placeholder="Message"
+                  id="message"
+                />
+              </div>
+              {/* <div>
+                  <Image src={updateData.image} width={150} height={150} alt="logo"/>
+                </div> */}
             </div>
             <div>
               <label className="sr-only" htmlFor="message2">
@@ -84,7 +99,8 @@ const Page = () => {
               <input
                 type="text"
                 name="title"
-                onChange={(e) => setTitle(e.target.value)}
+                value={updateData?.title}
+                onChange={(e) => setUpdateData({...updateData, title:  e.target.value})}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Title"
                 id="message2"
@@ -96,8 +112,9 @@ const Page = () => {
               </label>
               <input
                 type="text"
+                value={updateData?.description}
                 name="description"
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) => setUpdateData({...updateData, description: e.target.value})}
                 className="w-full rounded-lg border-gray-200 p-3 text-sm"
                 placeholder="Description"
                 id="message1"
