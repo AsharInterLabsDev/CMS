@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 
 const Tables = ({ imageMap, setId, id }) => {
   const router = usePathname();
-  console.log(imageMap);
+
   console.log(router);
   return (
     <>
@@ -23,23 +23,11 @@ const Tables = ({ imageMap, setId, id }) => {
                 <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                   Id
                 </th>
-                {imageMap.map((g) => g.name)[0] ? (
-                  <>
-                    <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                      Name
-                    </th>
-                  </>
-                ) : (
-                  <>
-                    <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                      Title
-                    </th>
-                  </>
-                )}
-
                 <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                  Description
+                  Name
                 </th>
+
+                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></th>
                 <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></th>
               </tr>
             </thead>
@@ -63,10 +51,7 @@ const Tables = ({ imageMap, setId, id }) => {
                       {gallery.id}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                      {gallery.name || gallery.title}
-                    </td>
-                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                      {gallery.description || gallery.title}
+                      {gallery.name}
                     </td>
 
                     <td class="whitespace-nowrap px-4 py-2">
@@ -80,7 +65,7 @@ const Tables = ({ imageMap, setId, id }) => {
                         ""
                       ) : router === "/dashboard/events" ? (
                         <a
-                          href={`/dashboard/events/update-events?update=${gallery.id}`}
+                          href="/dashboard/events"
                           class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
                         >
                           Update

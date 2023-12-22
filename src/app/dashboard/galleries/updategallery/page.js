@@ -17,7 +17,7 @@ const params = searchparams.get("update");
       const res = await API.getcategorygalleries();
       console.log(res.data);
       setImageMap(res?.data?.data);
-      const filterData = res?.data?.data.find(g=>g.id === Number(params));
+      const filterData = res?.data?.data.find(g => g.id === Number(params));
       setName(filterData);
     };
     fetchData();

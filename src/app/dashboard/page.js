@@ -12,7 +12,7 @@ const Page = () => {
     // console.log(data.session)
   return (
     <div className='text-4xl flex justify-center '>
-               <h2 className='flex justify-center '>Galleries</h2>
+               <h2 className='flex justify-center mt-10 font-bold text-5xl'>Dashboard</h2>
       <div>
 
        

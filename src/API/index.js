@@ -7,11 +7,13 @@ const API = axios.create({
   baseURL: BASE_URL,
 });
 
-//  driver
+//  LOGIN
 
 API.Login = (data) => {
   return API.post("/v1/admins/auth/login", data);
 };
+
+// Galleries
 API.galleries = () => {
   return API.get("/v1/galleries");
 };
@@ -36,6 +38,9 @@ API.deleteaccessgalleries = (id) => {
 API.createGalleries = (data) => {
   return API.post("/v1/utility/upload-image", data);
 };
+
+
+// EVENTS
 API.getevents = (data) => {
   return API.get("/v1/events");
 };
@@ -51,5 +56,27 @@ API.getsingleeeventsbyid = (id) => {
 API.updateevents = (id, data) => {
   return API.patch(`/v1/events/${id}`, data);
 };
+
+
+//SPOTLIGHT
+
+API.GetSpotlights = () => {
+  return API.get("/v1/spotlights");
+}
+API.UpdateSpotlights = (id) => {
+  return API.patch(`/v1/spotlights/${id}`);
+}
+API.DeleteSpotlights = (id) => {
+  return API.delete(`/v1/spotlights/${id}`);
+}
+API.CreateSpotlights = (data) => {
+  return API.post(`/v1/spotlights`,data);
+}
+
+//CONTACT US
+
+API.GetContact = () => {
+  return API.get("/v1/contact-us");
+}
 
 export { API };
