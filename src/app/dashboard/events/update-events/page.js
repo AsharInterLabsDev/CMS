@@ -67,7 +67,7 @@ const Page = () => {
     <>
       <div className="py-10 container mx-auto">
         <a
-          href="/dashboard/events/update-events"
+          href="/dashboard/events"
           class="inline-block rounded bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700"
         >
           Back

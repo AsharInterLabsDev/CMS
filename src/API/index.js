@@ -78,5 +78,11 @@ API.CreateSpotlights = (data) => {
 API.GetContact = () => {
   return API.get("/v1/contact-us");
 }
+API.GetNewsletter = () => {
+  return API.get("/v1/newsletters");
+}
+API.deleteNewsletter = (id) => {
+  return API.get(`/v1/newsletters/${id}`);
+}
 
 export { API };
